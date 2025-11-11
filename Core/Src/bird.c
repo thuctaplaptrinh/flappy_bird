@@ -28,13 +28,11 @@ int game_state = 0;  // 0: menu, 1: playing, 2: over
 /* Private Objects -----------------------------------------------------------*/
 
 // Bird object
-S_BIRD bird;
 void bird_draw(int y, uint16_t color);
 void bird_direction_process(void);
 void bird_moving_process(void);
 
 // Pipe object
-S_PIPE pipes[NUM_PIPES];
 void pipes_draw(void);
 void pipes_update(void);
 
@@ -106,7 +104,7 @@ void game_init(void) {
  */
 void game_process(void) {
 	static uint8_t counter_game = 0;
-	counter_game = (counter_game + 1) % 3;
+	counter_game = (counter_game + 1) % 2;
 
 //	pacman_direction_process(); // Put this function here to read buttons.
 
@@ -149,7 +147,7 @@ void game_draw(void) {
 
 	// Cập nhật score (cho score hiển thị ra led_7seg)
 	char buf[20];
-//	sprintf(buf, "Score: %d", score);
+	sprintf(buf, "Score: %d", score);
 	lcd_fill(20, 250, 150, 270, SKY_COLOR);
 	lcd_show_string(20, 250, buf, 0xFFFF, SKY_COLOR, 16, 0);
 }
@@ -201,9 +199,9 @@ void bird_moving_process(void) {
 	 * Update Bird's current and previous position based on current direction.
 	 *
 	 */
-	bird.velocity += GRAVITY;
+	bird.velocity += GRAVITY; // di xuong
 	bird.y_pre = bird.y;
-	bird.y -= bird.velocity;
+	bird.y += bird.velocity; // +JUMP_FORECE di xuong
 }
 
 void game_over(void) {
@@ -264,7 +262,8 @@ uint8_t is_button_up(void) {
 	/*
 	 * TO DO
 	 */
-	if(button_count[0] <= 20) {
+	if(button_count[0] == 1) {
+		button_count[0] = 0;
 		return 1;
 	}
 	return 0;

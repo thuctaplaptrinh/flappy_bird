@@ -49,12 +49,12 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-SPI_HandleTypeDef hspi1;
+//SPI_HandleTypeDef hspi1;
+//
+//TIM_HandleTypeDef htim2;
+//TIM_HandleTypeDef htim4;
 
-TIM_HandleTypeDef htim2;
-TIM_HandleTypeDef htim4;
-
-SRAM_HandleTypeDef hsram1;
+//SRAM_HandleTypeDef hsram1;
 
 /* USER CODE BEGIN PV */
 
