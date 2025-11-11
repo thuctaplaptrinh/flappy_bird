@@ -1,0 +1,11 @@
+bird.c:59:6:game_init	32	static
+bird.c:107:6:game_process	16	static
+bird.c:135:6:game_draw	48	static
+bird.c:157:6:game_handler	16	static
+bird.c:186:6:bird_direction_process	8	static
+bird.c:197:6:bird_moving_process	4	static
+bird.c:209:6:game_over	48	static
+bird.c:224:6:pipes_update	16	static
+bird.c:238:6:pipes_draw	24	static
+bird.c:252:6:bird_draw	32	static
+bird.c:263:9:is_button_up	4	static

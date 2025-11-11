@@ -1,0 +1,6 @@
+led_7seg.c:25:6:led_7seg_init	8	static
+led_7seg.c:35:6:led_7seg_display	8	static
+led_7seg.c:74:6:led_7seg_set_digit	24	static
+led_7seg.c:88:6:led_7seg_set_colon	16	static
+led_7seg.c:104:6:led_7seg_debug_turn_on	16	static
+led_7seg.c:119:6:led_7seg_debug_turn_off	16	static
