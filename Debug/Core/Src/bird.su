@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ../Core/Src/bird.c:57:6:game_init	32	static
 ../Core/Src/bird.c:105:6:game_process	16	static
 ../Core/Src/bird.c:133:6:game_draw	48	static
@@ -9,3 +10,16 @@
 ../Core/Src/bird.c:235:6:pipes_draw	24	static
 ../Core/Src/bird.c:249:6:bird_draw	32	static
 ../Core/Src/bird.c:260:9:is_button_up	4	static
+=======
+bird.c:57:6:game_init	32	static
+bird.c:105:6:game_process	16	static
+bird.c:133:6:game_draw	48	static
+bird.c:155:6:game_handler	16	static
+bird.c:184:6:bird_direction_process	8	static
+bird.c:195:6:bird_moving_process	4	static
+bird.c:207:6:game_over	48	static
+bird.c:222:6:pipes_update	16	static
+bird.c:237:6:pipes_draw	32	static
+bird.c:253:6:bird_draw	32	static
+bird.c:264:9:is_button_up	4	static
+>>>>>>> refs/remotes/origin/thuyenpham/fix-restart-button
