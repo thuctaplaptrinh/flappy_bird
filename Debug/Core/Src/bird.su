@@ -5,7 +5,7 @@
 ../Core/Src/bird.c:184:6:bird_direction_process	8	static
 ../Core/Src/bird.c:195:6:bird_moving_process	4	static
 ../Core/Src/bird.c:207:6:game_over	48	static
-../Core/Src/bird.c:222:6:pipes_update	16	static
-../Core/Src/bird.c:236:6:pipes_draw	24	static
-../Core/Src/bird.c:250:6:bird_draw	32	static
-../Core/Src/bird.c:261:9:is_button_up	4	static
+../Core/Src/bird.c:221:6:pipes_update	16	static
+../Core/Src/bird.c:235:6:pipes_draw	24	static
+../Core/Src/bird.c:249:6:bird_draw	32	static
+../Core/Src/bird.c:260:9:is_button_up	4	static
