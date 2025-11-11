@@ -23,7 +23,7 @@
 #define PIPE_SPEED      3
 #define GRAVITY         1
 #define JUMP_FORCE      -8
-#define NUM_PIPES       3
+#define NUM_PIPES       2
 
 #define SKY_COLOR       LIGHTBLUE  // Light blue
 #define BIRD_COLOR     	YELLOW     // Yellow

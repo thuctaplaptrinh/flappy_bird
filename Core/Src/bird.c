@@ -15,7 +15,7 @@ typedef struct BIRD {
 } S_BIRD;
 
 typedef struct PIPE {
-    int x;
+    int x, x_pre;
     int gap_y;  // Vị trí gap ngẫu nhiên
 } S_PIPE;
 
@@ -87,8 +87,8 @@ void game_init(void) {
 	 * - Firstly, you have to initialize default values for the pipe objects.
 	 */
 	for (int i = 0; i < NUM_PIPES; i++) {
-	    pipes[i].x = 240 + i * 100;
-	    pipes[i].gap_y = 80 + rand() % 80;  // Gap random 80-160
+	    pipes[i].x = 150 + i * 100;
+	    pipes[i].gap_y = 70 + rand() % 90;  // Gap random 70-150
 	}
 
 	score = 0;
@@ -206,8 +206,8 @@ void bird_moving_process(void) {
 
 void game_over(void) {
     game_state = 2;
-    lcd_fill(80, 80, 240, 160, 0xF800);  // Nền đỏ
-    lcd_show_string_center(0, 100, "GAME OVER", 0xFFFF, 0xF800, 24, 0);
+    lcd_fill(60, 80, 180, 160, 0xF800);  // Nền đỏ
+    lcd_show_string_center(-20, 100, "GAME OVER", 0xFFFF, 0xF800, 24, 0);
     lcd_show_string_center(0, 130, "Score:", 0xFFFF, 0xF800, 20, 0);
     char buf[20];
 //    sprintf(buf, "%d", score);
@@ -221,11 +221,12 @@ void game_over(void) {
 
 void pipes_update(void) {
     for (int i = 0; i < NUM_PIPES; i++) {
+    	pipes[i].x_pre = pipes[i].x;
         pipes[i].x -= PIPE_SPEED;
-        if (pipes[i].x < -PIPE_WIDTH) {
-            pipes[i].x = 320;
-            pipes[i].gap_y = 80 + rand() % 80;
-            /* random gap_y từ 80 đến 160 vì gap_y nằm giữa khe (khe rộng 120),
+        if (pipes[i].x + PIPE_WIDTH < 0) {
+            pipes[i].x = 240;
+            pipes[i].gap_y = 70 + rand() % 80;
+            /* random gap_y từ 70 đến 150 vì gap_y nằm giữa khe (khe rộng 120),
             nên chia ra phần trên là 60 và phần dưới là 60. Vì vậy nên chiều cao
             của ống trên phải lớn hơn hoặc bằng 60 và ống dưới phải bé hơn hoặc bằng
             160 (220 là mặt đất) */
@@ -241,8 +242,10 @@ void pipes_draw(void) {
 	*/
     for (int i = 0; i < NUM_PIPES; i++) {
         // Pipe trên
+    	lcd_fill(pipes[i].x_pre, 0, pipes[i].x_pre + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, SKY_COLOR);
         lcd_fill(pipes[i].x, 0, pipes[i].x + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, PIPE_COLOR);
         // Pipe dưới
+        lcd_fill(pipes[i].x_pre, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x_pre + PIPE_WIDTH, 219, SKY_COLOR);
         lcd_fill(pipes[i].x, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x + PIPE_WIDTH, 219, PIPE_COLOR);
     }
 }
