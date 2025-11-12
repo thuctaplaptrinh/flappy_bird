@@ -87,7 +87,7 @@ void game_init(void) {
 	 * - Firstly, you have to initialize default values for the pipe objects.
 	 */
 	for (int i = 0; i < NUM_PIPES; i++) {
-	    pipes[i].x = 150 + i * 100;
+	    pipes[i].x = 150 + i * 140;
 	    pipes[i].gap_y = 70 + rand() % 90;  // Gap random 70-150
 	}
 
@@ -175,7 +175,7 @@ void game_handler(void) {
 	        }
 	    }
 	    // Score khi qua pipe
-	    if (pipes[i].x + PIPE_WIDTH < BIRD_X && pipes[i].x + PIPE_WIDTH > BIRD_X - PIPE_SPEED) {
+	    if (pipes[i].x + PIPE_WIDTH < BIRD_X && pipes[i].x + PIPE_WIDTH >= BIRD_X - PIPE_SPEED) {
 	        score++;
 	    }
 	}
@@ -241,12 +241,22 @@ void pipes_draw(void) {
 	* Draw whatever you like
 	*/
     for (int i = 0; i < NUM_PIPES; i++) {
-        // Pipe trên
-    	lcd_fill(pipes[i].x_pre, 0, pipes[i].x_pre + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, SKY_COLOR);
-        lcd_fill(pipes[i].x, 0, pipes[i].x + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, PIPE_COLOR);
-        // Pipe dưới
-        lcd_fill(pipes[i].x_pre, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x_pre + PIPE_WIDTH, 219, SKY_COLOR);
-        lcd_fill(pipes[i].x, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x + PIPE_WIDTH, 219, PIPE_COLOR);
+    	if (pipes[i].x >= 0) {
+			// Pipe trên
+			lcd_fill(pipes[i].x_pre, 0, pipes[i].x_pre + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, SKY_COLOR);
+			lcd_fill(pipes[i].x, 0, pipes[i].x + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, PIPE_COLOR);
+			// Pipe dưới
+			lcd_fill(pipes[i].x_pre, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x_pre + PIPE_WIDTH, 219, SKY_COLOR);
+			lcd_fill(pipes[i].x, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x + PIPE_WIDTH, 219, PIPE_COLOR);
+    	}
+    	else {
+    		// Pipe trên
+    		lcd_fill(0, 0, pipes[i].x_pre + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, SKY_COLOR);
+    		lcd_fill(0, 0, pipes[i].x + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, PIPE_COLOR);
+    		// Pipe dưới
+            lcd_fill(0, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x_pre + PIPE_WIDTH, 219, SKY_COLOR);
+            lcd_fill(0, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x + PIPE_WIDTH, 219, PIPE_COLOR);
+    	}
     }
 }
 

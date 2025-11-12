@@ -7,5 +7,5 @@ bird.c:195:6:bird_moving_process	4	static
 bird.c:207:6:game_over	48	static
 bird.c:222:6:pipes_update	16	static
 bird.c:237:6:pipes_draw	32	static
-bird.c:253:6:bird_draw	32	static
-bird.c:264:9:is_button_up	4	static
+bird.c:263:6:bird_draw	32	static
+bird.c:274:9:is_button_up	4	static

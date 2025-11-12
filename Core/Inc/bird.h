@@ -12,6 +12,7 @@
 #include "lcd.h"
 #include "led_7seg.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 #include <string.h>
 
