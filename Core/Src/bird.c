@@ -220,7 +220,7 @@ static void game_resume(void) {
 static void game_over_screen(void) {
     state = ST_GAME_OVER;
     lcd_fill(80, 80, 240, 160, 0xF800);
-    lcd_show_string_center(0, 100, "GAME OVER", 0xFFFF, 0xF800, 24, 0);
+    lcd_show_string_center(-20, 100, "GAME OVER", 0xFFFF, 0xF800, 24, 0);
     lcd_show_string_center(0, 130, "Score:", 0xFFFF, 0xF800, 20, 0);
     char buf[20];
     snprintf(buf, sizeof buf, "%d", score);
