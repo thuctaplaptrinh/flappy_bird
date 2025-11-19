@@ -24,6 +24,7 @@ S_BIRD bird;
 S_PIPE pipes[NUM_PIPES];
 int score = 0;
 int game_state = 0;  // 0: menu, 1: playing, 2: over
+int PIPE_SPEED = 3;
 
 /* Private Objects -----------------------------------------------------------*/
 
@@ -88,7 +89,7 @@ void game_init(void) {
 	 */
 	for (int i = 0; i < NUM_PIPES; i++) {
 	    pipes[i].x = 150 + i * 140;
-	    pipes[i].gap_y = 70 + rand() % 90;  // Gap random 70-150
+	    pipes[i].gap_y = 70 + rand() % 80;  // Gap random 70-150
 	}
 
 	score = 0;
@@ -161,7 +162,7 @@ void game_handler(void) {
 	 * 3. Check if Bird has passed through gap between 2 pipes, then update the score.
 	 */
 	// Game over: chạm ground/top/pipe
-	if (bird.y > 205 || bird.y < 0) {
+	if (bird.y > 204 || bird.y < 0) {
 	// chạm nền         chạm trần
 	    game_over();
 	    return;
@@ -177,6 +178,9 @@ void game_handler(void) {
 	    // Score khi qua pipe
 	    if (pipes[i].x + PIPE_WIDTH < BIRD_X && pipes[i].x + PIPE_WIDTH >= BIRD_X - PIPE_SPEED) {
 	        score++;
+	        if (score%10 == 5) {
+	        	PIPE_SPEED += 2;
+	        }
 	    }
 	}
 }
@@ -224,6 +228,8 @@ void pipes_update(void) {
     	pipes[i].x_pre = pipes[i].x;
         pipes[i].x -= PIPE_SPEED;
         if (pipes[i].x + PIPE_WIDTH < 0) {
+        	lcd_fill(0, 0, pipes[i].x_pre + PIPE_WIDTH, pipes[i].gap_y - PIPE_GAP/2, SKY_COLOR);
+        	lcd_fill(0, pipes[i].gap_y + PIPE_GAP/2, pipes[i].x_pre + PIPE_WIDTH, 219, SKY_COLOR);
             pipes[i].x = 240;
             pipes[i].gap_y = 70 + rand() % 80;
             /* random gap_y từ 70 đến 150 vì gap_y nằm giữa khe (khe rộng 120),
